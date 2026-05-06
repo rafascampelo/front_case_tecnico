@@ -1,0 +1,45 @@
+.auth-card {
+  width: min(100%, 420px);
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 24px 70px rgba(0, 36, 84, 0.16);
+  margin-top: -15px;
+}
+
+mat-card-title {
+  color: #003f8f;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 4px !important;
+}
+
+mat-card-subtitle {
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.auth-form {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+
+}
+
+.submit-button {
+  height: 40px;
+  border-radius: 6px;
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  color: #6b7280;
+  padding: 12px 0 0 0;
+}
+mat-card-actions a {
+  color: #003f8f;
+  font-weight: 500;
+}

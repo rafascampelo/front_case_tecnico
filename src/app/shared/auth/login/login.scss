@@ -1,0 +1,39 @@
+.auth-card {
+  width: min(100%, 420px);
+  padding: 28px;
+  border-radius: 8px;
+  box-shadow: 0 24px 70px rgba(0, 36, 84, 0.16);
+}
+
+mat-card-title {
+  color: #003f8f;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+mat-card-subtitle {
+  color: #6b7280;
+}
+
+.auth-form {
+  display: grid;
+  gap: 18px;
+  margin-top: 28px;
+}
+
+.submit-button {
+  height: 48px;
+  border-radius: 6px;
+  font-weight: 700;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  color: #6b7280;
+}
+mat-card-actions a {
+  color: #003f8f;
+  font-weight: 500;
+}

@@ -1,28 +1,37 @@
 import { Routes } from '@angular/router';
-import { Login } from './pages/login/login';
-import { Register } from './pages/register/register';
-import { InitialScreen } from './pages/initial-screen/initial-screen';
-
+import { Login } from './shared/auth/login/login';
+import { Register } from './shared/auth/register/register';
+import { InitialScreen } from './feature/pages/initial-screen/initial-screen';
+import { AuthGuard } from './core/guards/auth';
+import { MainLayout } from './shared/layout/main-layout/main-layout';
 
 export const routes: Routes = [
-  {
+    {
     path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
+    component: MainLayout,
+    children: [
+      {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full',
+      },
+      {
+        path: 'login',
+        loadComponent: () =>
+          import('./shared/auth/login/login')
+            .then(m => m.Login),
+      },
+      {
+        path: 'register',
+        loadComponent: () =>
+          import('./shared/auth/register/register')
+            .then(m => m.Register),
+      },
+    ],
   },
-
-  {
-    path: 'login',
-    component: Login
-  },
-
-  {
-    path: 'register',
-    component: Register
-  },
-
   {
     path: 'home',
-    component: InitialScreen
-  }
+    component: InitialScreen,
+    canActivate: [AuthGuard],
+  },
 ];
