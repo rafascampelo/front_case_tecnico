@@ -20,8 +20,7 @@ import { CdkAriaLive } from "../../../../../node_modules/@angular/cdk/types/_a11
     MatCardModule,
     MatFormFieldModule,
     MatIconModule,
-    MatInputModule,
-    CdkAriaLive
+    MatInputModule        
 ],
   templateUrl: './register.html',
   styleUrl: './register.scss',
