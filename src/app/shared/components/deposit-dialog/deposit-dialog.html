@@ -1,1 +1,36 @@
-<p>deposit-dialog works!</p>
+<!-- OVERLAY -->
+<div class="modal-overlay">
+  <!-- MODAL -->
+  <div class="modal-content">
+    <!-- HEADER -->
+    <div class="modal-header">
+      <div>
+        <h2>Depositar dinheiro</h2>
+        <p>Adicione saldo na sua conta</p>
+      </div>
+
+      <button class="close-button" (click)="closeModal()">✕</button>
+    </div>
+
+    <!-- FORM -->
+    <form class="modal-form">
+      <!-- INPUT -->
+      <div class="input-group">
+        <label>Valor do depósito</label>
+
+        <div class="money-input">
+          <span>R$</span>
+
+          <input type="number" placeholder="0,00" />
+        </div>
+      </div>
+
+      <!-- ACTIONS -->
+      <div class="modal-actions">
+        <button type="button" class="secondary-button" (click)="closeModal()">Cancelar</button>
+
+        <button type="submit" class="primary-button">Confirmar depósito</button>
+      </div>
+    </form>
+  </div>
+</div>

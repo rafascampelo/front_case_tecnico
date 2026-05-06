@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserSearch } from './user-search';
+import { HomeHeader } from './home-header';
 
-describe('UserSearch', () => {
-  let component: UserSearch;
-  let fixture: ComponentFixture<UserSearch>;
+describe('HomeHeader', () => {
+  let component: HomeHeader;
+  let fixture: ComponentFixture<HomeHeader>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UserSearch]
+      imports: [HomeHeader]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(UserSearch);
+    fixture = TestBed.createComponent(HomeHeader);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

@@ -7,6 +7,7 @@ export class ClientService {
   constructor(private http: HttpClient) {}
 
   getClient(id: number) {
-    return this.http.get<{ balance: number }>(`${this.api}/client/${id}`);
+    console.log('ClientService.getClient request:', `${this.api}/clients/${id}`);
+    return this.http.get<{ balance: number }>(`${this.api}/clients/${id}`);
   }
 }

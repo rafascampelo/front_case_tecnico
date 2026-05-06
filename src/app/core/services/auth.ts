@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, tap } from 'rxjs';
 import { Client } from '../interfaces/client.interface';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root',
@@ -11,38 +12,26 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   login(data: { email: string; password: string }) {
-    console.log('Enviando dados para login:', data); // Debug
-    return this.http
-      .post<{ access_token: string; token_type: string }>(`${this.api}/auth/login`, data)
-      .pipe(
-        tap((response) => {
-          console.log('Resposta da API:', response); // Debug
-          if (response.access_token) {
-            localStorage.setItem('token', response.access_token);
-            console.log('Token salvo:', response.access_token); // Debug
-          }
-        }),
-        catchError((error) => {
-          console.error('Erro no login:', error);
-          throw error;
-        }),
-      );
-  }
-
-  register(data: { name: string; email: string; password: string }) {
-    return this.http.post<Client>(`${this.api}/auth`, data).pipe(
-      tap((response) => {
-        console.log('Enviando dados para login:', data); // Debug
-        console.log('Resposta da API:', response); 
-      }),
-      catchError((error) => {
-        console.error('Erro no cadastro:', error);
-        throw error;
-      }),
+    return this.http.post<{ access_token: string; token_type: string }>(
+      `${this.api}/auth/login`,
+      data,
     );
   }
 
-  logout() {
-    localStorage.removeItem('token');
+  register(data: { name: string; email: string; password: string }) {
+    return this.http.post<Client>(`${this.api}/auth`, data);
+  }
+
+  getUserId() {
+    const token = localStorage.getItem('token');
+    if (!token) return null;
+
+    try {
+      const decoded: any = jwtDecode(token);
+      return decoded.id ?? decoded.user_id ?? decoded.sub ?? null;
+    } catch (error) {
+      console.error('Erro ao decodificar token:', error);
+      return null;
+    }
   }
 }

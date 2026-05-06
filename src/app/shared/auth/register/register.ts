@@ -41,9 +41,9 @@ export class Register {
   }
 
   register() {
-    console.log('Form value:', this.registerForm.value); // Debug
+    console.log('Form value:', this.registerForm.value);
     this.auth.register(this.registerForm.value).subscribe({
-      next: () => {
+      next: (response) => {
         console.log('Cadastro bem-sucedido, redirecionando para /login'); // Debug
         this.router.navigate(['/login']); // Redireciona após cadastro bem-sucedido
       },

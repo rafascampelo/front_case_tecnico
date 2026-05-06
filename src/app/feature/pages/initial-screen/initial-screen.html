@@ -1,27 +1,20 @@
-<div class="dashboard">
+<header class="home-page">
+  <app-home-header></app-home-header>
+</header>
 
-  <header class="header">
-
-    <app-user-search></app-user-search>
-
-    <app-profile-dialog></app-profile-dialog>
-
-  </header>
-
+<div class="home-content">
   <app-balance-card></app-balance-card>
 
   <div class="actions">
-
-    <button mat-raised-button color="primary">
-      Depositar
-    </button>
-
-    <button mat-raised-button color="accent">
-      Sacar
-    </button>
-
+    <button class="deposit-button" (click)="openDepositModal()">Depositar</button>
+    <button class="withdraw-button" (click)="openWithdrawModal()">Sacar</button>
   </div>
 
-  <app-transaction-list></app-transaction-list>
+  @if (showDepositModal) {
+    <app-deposit-dialog (close)="closeModal()" />
+  }
 
+  @if (showWithdrawModal) {
+    <app-withdraw-dialog (close)="closeModal()" />
+  }
 </div>

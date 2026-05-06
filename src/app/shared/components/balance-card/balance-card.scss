@@ -1,0 +1,61 @@
+.balance-card {
+    margin-top: 30px;
+  padding: 32px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #003f8f 0%, #0057b8 100%);
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  box-shadow: 0 24px 70px rgba(0, 36, 84, 0.18);
+}
+
+.balance-info span,
+.balance-info small {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.balance-info strong {
+  display: block;
+  margin: 10px 0 6px;
+  font-size: 42px;
+  line-height: 1;
+}
+
+.actions {
+  display: flex;
+  align-items: end;
+  gap: 12px;
+}
+
+.actions button {
+  height: 46px;
+  border-radius: 6px;
+  font-weight: 700;
+}
+
+.primary-action {
+  background: #fff !important;
+  color: #003f8f !important;
+}
+
+.accent-action {
+  background: #ff7800 !important;
+  color: #fff !important;
+}
+
+@media (max-width: 720px) {
+  .balance-card {
+    flex-direction: column;
+    padding: 24px;
+  }
+
+  .balance-info strong {
+    font-size: 34px;
+  }
+
+  .actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}

@@ -1,13 +1,47 @@
 import { Component } from '@angular/core';
-import { TransactionList } from "../../../shared/components/transaction-list/transaction-list";
-import { BalanceCard } from "../../../shared/components/balance-card/balance-card";
-import { ProfileDialog } from "../../../shared/components/profile-dialog/profile-dialog";
-import { UserSearch } from '../../../shared/components/user-search/user-search';
+import { BalanceCard } from '../../../shared/components/balance-card/balance-card';
+import { DepositDialog } from '../../../shared/components/deposit-dialog/deposit-dialog';
+import { WithdrawDialog } from '../../../shared/components/withdraw-dialog/withdraw-dialog';
+import { HomeHeader } from '../../../shared/components/home-header/home-header';
 
 @Component({
   selector: 'app-initial-screen',
-  imports: [TransactionList, BalanceCard, ProfileDialog, UserSearch],
+  imports: [
+    BalanceCard,
+    HomeHeader,
+    DepositDialog,
+    WithdrawDialog,
+],
   templateUrl: './initial-screen.html',
   styleUrl: './initial-screen.scss',
 })
-export class InitialScreen {}
+export class InitialScreen {
+  showDepositModal = false;
+  showWithdrawModal = false;
+
+  constructor() {
+    console.log('InitialScreen component initialized');
+  }
+
+  openDepositModal() {
+    console.log('openDepositModal called');
+    this.showDepositModal = true;
+  }
+
+  openWithdrawModal() {
+    console.log('openWithdrawModal called');
+    this.showWithdrawModal = true;
+  }
+
+  closeModal() {
+    console.log('closeModal called');
+    this.showDepositModal = false;
+    this.showWithdrawModal = false;
+    this.refreshPage();
+  }
+
+  refreshPage() {
+    console.log('Recarregando página...');
+    location.reload();
+  }
+}

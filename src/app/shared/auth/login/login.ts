@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
@@ -27,6 +27,8 @@ import { MatInputModule } from '@angular/material/input';
 })
 export class Login {
   form!: FormGroup;
+  email = signal('rafateste@outlook.com');
+  password = signal('1234567');
 
   constructor(
     private fb: FormBuilder,
@@ -34,16 +36,18 @@ export class Login {
     private router: Router,
   ) {
     this.form = this.fb.group({
-      email: '',
-      password: '',
+      email: this.email(),
+      password: this.password(),
     });
   }
 
   login() {
     console.log('Form value:', this.form.value); // Debug
     this.auth.login(this.form.value).subscribe({
-      next: () => {
-        console.log('Login bem-sucedido, redirecionando para /home'); // Debug
+      next: (response) => {
+        const token = response.access_token;
+        localStorage.setItem('token', token);
+        console.log('Token armazenado:', token); // Debug
         this.router.navigate(['/home']); // Redireciona após login bem-sucedido
       },
       error: (err) => {

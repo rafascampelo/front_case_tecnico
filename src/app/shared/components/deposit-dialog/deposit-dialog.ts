@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-deposit-dialog',
@@ -6,4 +6,10 @@ import { Component } from '@angular/core';
   templateUrl: './deposit-dialog.html',
   styleUrl: './deposit-dialog.scss',
 })
-export class DepositDialog {}
+export class DepositDialog {
+  @Output() close = new EventEmitter<void>();
+
+  closeModal() {
+    this.close.emit();
+  }
+}

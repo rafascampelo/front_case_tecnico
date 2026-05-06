@@ -1,9 +1,7 @@
 <div class="balance-card">
-
-<h2>Saldo disponível</h2>
-
-<h1>
-R$ {{balance}}
-</h1>
-
+  <div class="balance-info">
+    <span>Saldo disponível</span>
+    <strong>R$ {{ balance() | number: '1.2-2' }}</strong>
+    <small>Atualizado hoje às 09:42</small>
+  </div>
 </div>
