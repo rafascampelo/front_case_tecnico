@@ -11,14 +11,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule,
+  standalone: true,
+  imports: [
+    ReactiveFormsModule,
     CommonModule,
     RouterLink,
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
     MatIconModule,
-    MatInputModule],
+    MatInputModule,
+  ],
   templateUrl: './login.html',
   styleUrl: './login.scss',
 })

@@ -1,1 +1,27 @@
-<p>initial-screen works!</p>
+<div class="dashboard">
+
+  <header class="header">
+
+    <app-user-search></app-user-search>
+
+    <app-profile-dialog></app-profile-dialog>
+
+  </header>
+
+  <app-balance-card></app-balance-card>
+
+  <div class="actions">
+
+    <button mat-raised-button color="primary">
+      Depositar
+    </button>
+
+    <button mat-raised-button color="accent">
+      Sacar
+    </button>
+
+  </div>
+
+  <app-transaction-list></app-transaction-list>
+
+</div>

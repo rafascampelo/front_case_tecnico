@@ -32,7 +32,8 @@ export class AuthService {
   register(data: { name: string; email: string; password: string }) {
     return this.http.post<Client>(`${this.api}/auth`, data).pipe(
       tap((response) => {
-        console.log('Resposta da API:', response); // Debug
+        console.log('Enviando dados para login:', data); // Debug
+        console.log('Resposta da API:', response); 
       }),
       catchError((error) => {
         console.error('Erro no cadastro:', error);
