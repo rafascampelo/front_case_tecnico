@@ -22,7 +22,6 @@ mat-card-subtitle {
   display: grid;
   gap: 10px;
   margin-top: 16px;
-
 }
 
 .submit-button {
@@ -30,6 +29,12 @@ mat-card-subtitle {
   border-radius: 6px;
   font-weight: 700;
   margin-top: 4px;
+  background-color: #ff6200 !important;
+  color: #fff !important;
+}
+
+.auth-title {
+  color: black !important;
 }
 
 mat-card-actions {

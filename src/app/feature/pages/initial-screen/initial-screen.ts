@@ -3,15 +3,11 @@ import { BalanceCard } from '../../../shared/components/balance-card/balance-car
 import { DepositDialog } from '../../../shared/components/deposit-dialog/deposit-dialog';
 import { WithdrawDialog } from '../../../shared/components/withdraw-dialog/withdraw-dialog';
 import { HomeHeader } from '../../../shared/components/home-header/home-header';
+import { CurrentClientService } from '../../../core/services/current-client';
 
 @Component({
   selector: 'app-initial-screen',
-  imports: [
-    BalanceCard,
-    HomeHeader,
-    DepositDialog,
-    WithdrawDialog,
-],
+  imports: [BalanceCard, HomeHeader, DepositDialog, WithdrawDialog],
   templateUrl: './initial-screen.html',
   styleUrl: './initial-screen.scss',
 })
@@ -19,10 +15,12 @@ export class InitialScreen {
   showDepositModal = false;
   showWithdrawModal = false;
 
-  constructor() {
-    console.log('InitialScreen component initialized');
-  }
+  constructor(private currentClient: CurrentClientService) {}
 
+  ngOnInit() {
+    this.currentClient.loadCurrentClient();
+  }
+  
   openDepositModal() {
     console.log('openDepositModal called');
     this.showDepositModal = true;

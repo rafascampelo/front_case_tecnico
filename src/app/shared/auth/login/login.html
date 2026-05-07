@@ -1,6 +1,6 @@
 <mat-card class="auth-card">
   <mat-card-header>
-    <mat-card-title>Entrar</mat-card-title>
+    <mat-card-title class="auth-title">Entrar</mat-card-title>
     <mat-card-subtitle>Acesse sua conta</mat-card-subtitle>
   </mat-card-header>
 
@@ -8,19 +8,29 @@
     <form class="auth-form" [formGroup]="form" (ngSubmit)="login()">
       <mat-form-field appearance="outline">
         <mat-label>E-mail</mat-label>
-        <input matInput type="email" autocomplete="email" formControlName="email" [value]="email()" />
+        <input
+          matInput
+          type="email"
+          autocomplete="email"
+          formControlName="email"
+          [value]="email()"
+        />
         <mat-icon matSuffix>mail</mat-icon>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Senha</mat-label>
-        <input matInput type="password" autocomplete="current-password" formControlName="password" [value]="password()" />
+        <input
+          matInput
+          type="password"
+          autocomplete="current-password"
+          formControlName="password"
+          [value]="password()"
+        />
         <mat-icon matSuffix>lock</mat-icon>
       </mat-form-field>
 
-      <button mat-flat-button color="primary" class="submit-button" type="submit">
-        Entrar
-      </button>
+      <button mat-flat-button color="primary" class="submit-button" type="submit">Entrar</button>
     </form>
   </mat-card-content>
 

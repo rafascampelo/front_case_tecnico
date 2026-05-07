@@ -16,7 +16,7 @@
   width: 58px;
   height: 58px;
   border-radius: 50%;
-  background: var(--mat-sys-primary, #3f51b5);
+  background: #FF6200;
   color: var(--mat-sys-on-primary, #fff);
   display: flex;
   align-items: center;
@@ -24,6 +24,11 @@
   font-size: 24px;
   font-weight: 700;
   flex-shrink: 0;
+}
+.submit-button {
+  min-width: 96px;
+  background-color: #FF6200 !important;
+  color: #fff !important;
 }
 
 .modal-title {

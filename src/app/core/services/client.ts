@@ -13,12 +13,21 @@ export class ClientService {
     return this.http.get<{ balance: number }>(`${this.api}/clients/${id}`);
   }
 
-   getClient(id: number) {
+  getClient(id: number) {
     return this.http.get<Client>(`${this.api}/clients/${id}`);
   }
 
   getClients() {
     return this.http.get<Client[]>(`${this.api}/clients`);
+  }
+
+  getClientIdByEmail(email: string) {
+    return this.getClients().pipe(
+      map((clients) => {
+        const client = clients.find((client) => client.email.toLowerCase() === email.toLowerCase());
+        return client?.id ?? null;
+      }),
+    );
   }
 
   updateClient(id: number, data: Partial<Client>) {

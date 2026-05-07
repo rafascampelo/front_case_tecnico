@@ -3,7 +3,7 @@
     <div class="avatar">{{ name().charAt(0).toUpperCase() }}</div>
 
     <div>
-      <span class="greeting">Olá, {{ name() }}</span>
+      <span class="greeting">Olá, {{ currentClient.client()?.name }} </span>
       <strong>Bem-vindo de volta</strong>
     </div>
   </div>
@@ -46,8 +46,10 @@
     @if (searchResults.length > 0) {
       <ul class="search-results">
         <li class="search-result-item" *ngFor="let client of searchResults">
-          <span class="client-name">{{ client.name }}</span>
-          <span class="client-email">{{ client.email }}</span>
+          <span class="client-name"
+            >{{ currentClient.client()?.name }}
+            <span>{{ currentClient.client()?.email }}</span>
+          </span>
         </li>
       </ul>
     } @else if (hasSearched && searchTerm().trim()) {

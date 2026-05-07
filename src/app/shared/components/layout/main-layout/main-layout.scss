@@ -3,12 +3,13 @@
   display: grid;
   grid-template-columns: minmax(320px, 0.95fr) minmax(360px, 1.05fr);
   background:
-    radial-gradient(circle at 15% 20%, rgba(255, 112, 0, 0.16), transparent 28%),
-    linear-gradient(135deg, #003f8f 0%, #0057b8 48%, #f4f6f8 48%);
+    radial-gradient(circle at 16% 18%, rgba(255, 98, 0, 0.12), transparent 32%),
+    radial-gradient(circle at 92% 86%, rgba(255, 98, 0, 0.08), transparent 28%),
+    linear-gradient(135deg, #ffffff 0%, #f7f7f8 52%, #f1f2f4 100%);
 }
 
 .brand-panel {
-  color: #fff;
+  color: #000203 !important;
   padding: 72px;
   display: flex;
   flex-direction: column;
@@ -19,7 +20,7 @@
   width: 56px;
   height: 56px;
   border-radius: 16px;
-  background: #ff7800;
+  background: #ff6200;
   display: grid;
   place-items: center;
   font-size: 32px;
@@ -36,7 +37,8 @@
   max-width: 420px;
   font-size: 18px;
   line-height: 1.5;
-  color: rgba(255, 255, 255, 0.86);
+  color: #000203 !important;
+  font-weight: 500;
 }
 
 .auth-panel {

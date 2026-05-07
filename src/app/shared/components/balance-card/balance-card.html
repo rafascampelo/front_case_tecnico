@@ -1,7 +1,9 @@
 <div class="balance-card">
   <div class="balance-info">
     <span>Saldo disponível</span>
-    <strong>R$ {{ balance() | number: '1.2-2' }}</strong>
-    <small>Atualizado {{ ultimaAtualizacao() | date: 'dd/MM/yyyy HH:mm' }} </small>
+    <strong>
+      {{ currentClient.client()?.balance ?? 0 | currency: 'BRL' : 'symbol' : '1.2-2' : 'pt-BR' }}
+    </strong>
+    <small>Atualizado {{ ultimaAtualizacao | date: 'dd/MM/yyyy HH:mm' }} </small>
   </div>
 </div>

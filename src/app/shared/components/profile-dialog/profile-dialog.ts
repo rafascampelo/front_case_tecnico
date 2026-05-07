@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AuthService } from '../../../core/services/auth';
@@ -22,7 +22,6 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     MatSlideToggleModule,
     MatIconModule,
-    MatButtonModule,
   ],
   templateUrl: './profile-dialog.html',
   styleUrl: './profile-dialog.scss',
@@ -31,6 +30,7 @@ export class ProfileDialog {
   private dialogRef = inject(MatDialogRef<ProfileDialog>);
   data = inject(MAT_DIALOG_DATA);
   private router = inject(Router);
+
   form!: FormGroup;
   password = signal('');
   hidePassword = true;
@@ -44,7 +44,6 @@ export class ProfileDialog {
       name: this.data?.name || '',
       email: this.data?.email || '',
       changePassword: [false],
-
       password: '',
     });
   }
@@ -54,25 +53,37 @@ export class ProfileDialog {
   }
 
   updateProfile() {
-    const body = {
-      name: this.form.value.name,
-      email: this.form.value.email,
-      password: this.form.value.password,
-    };
-    const { changePassword, password } = this.form.value;
-    
-    if (changePassword && password && password.trim() !== '') {
-      body.password = password;
+    const id = this.auth.getUserId();
+
+    if (!id) {
+      alert('Usuário não encontrado. Faça login novamente.');
+      this.auth.logout();
+      this.router.navigateByUrl('/login');
+      return;
     }
 
-    this.clientService.updateClient(this.auth.getUserId(), body).subscribe({
+    const body: {
+      name: string;
+      email: string;
+      password?: string;
+    } = {
+      name: this.form.value.name,
+      email: this.form.value.email,
+    };
+
+    const { changePassword, password } = this.form.value;
+
+    if (changePassword && password?.trim()) {
+      body.password = password.trim();
+    }
+
+    this.clientService.updateClient(id, body).subscribe({
       next: () => {
         alert('Perfil atualizado com sucesso!');
-        this.close();
-        window.location.reload();
+        this.dialogRef.close(true);
       },
       error: (err) => {
-        alert('Erro ao atualizar perfil:' + err.message);
+        alert('Erro ao atualizar perfil: ' + err.message);
       },
     });
   }
@@ -83,18 +94,25 @@ export class ProfileDialog {
     );
 
     if (!confirmDelete) return;
-    this.clientService.deleteClient(this.auth.getUserId()).subscribe({
+
+    const id = this.auth.getUserId();
+
+    if (!id) {
+      alert('Usuário não encontrado. Faça login novamente.');
+      this.auth.logout();
+      this.router.navigateByUrl('/login');
+      return;
+    }
+
+    this.clientService.deleteClient(id).subscribe({
       next: () => {
         this.auth.logout();
-        console.log('Perfil deletado com sucesso!' + localStorage.getItem('token'));
         this.dialogRef.close();
 
-        setTimeout(() => {
-          this.router.navigateByUrl('/login');
-        });
+        this.router.navigateByUrl('/login');
       },
       error: (err) => {
-        alert('Erro ao deletar perfil:' + err.message);
+        alert('Erro ao deletar perfil: ' + err.message);
       },
     });
   }
