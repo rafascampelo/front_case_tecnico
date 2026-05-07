@@ -42,17 +42,17 @@ export class Login {
   }
 
   login() {
-    console.log('Form value:', this.form.value); // Debug
+    console.log('Form value:', this.form.value); 
     this.auth.login(this.form.value).subscribe({
       next: (response) => {
         const token = response.access_token;
         localStorage.setItem('token', token);
-        console.log('Token armazenado:', token); // Debug
-        this.router.navigate(['/home']); // Redireciona após login bem-sucedido
+        console.log('Token armazenado:', token); 
+        this.router.navigate(['/home']);
       },
       error: (err) => {
         console.error('Erro no login:', err);
-        alert('Erro no login. Verifique suas credenciais.'); // Feedback básico para o usuário
+        alert('Erro no login. Verifique suas credenciais.');
       },
     });
   }

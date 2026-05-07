@@ -44,12 +44,12 @@ export class Register {
     console.log('Form value:', this.registerForm.value);
     this.auth.register(this.registerForm.value).subscribe({
       next: (response) => {
-        console.log('Cadastro bem-sucedido, redirecionando para /login'); // Debug
-        this.router.navigate(['/login']); // Redireciona após cadastro bem-sucedido
+        console.log('Cadastro bem-sucedido, redirecionando para /login');
+        this.router.navigate(['/login']); 
       },
       error: (err) => {
         console.error('Erro no cadastro:', err);
-        alert('Erro no cadastro. Tente novamente.'); // Feedback básico para o usuário
+        alert('Erro no cadastro. Tente novamente.'); 
       },
     });
   }
