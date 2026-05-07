@@ -1,24 +1,58 @@
 <div class="profile-modal">
   <div class="modal-header">
     <div class="modal-avatar">
-      {{ name().charAt(0).toUpperCase() }}
+      {{ form.value.name?.charAt(0)?.toUpperCase() }}
     </div>
 
-    <div>
+    <div class="modal-title">
       <h2>Meu perfil</h2>
-      <p>Atualize seus dados ou remova sua conta.</p>
+      <p>Atualize os dados que achar necessario ou remova sua conta.</p>
     </div>
   </div>
-  <form class="modal-form" (ngSubmit)="updateProfile()">
-    <input  type="text" [ngModel]="name()" (ngModelChange)="name.set($event)"/>
-    <P>email</P>
-    <input  type="email" [ngModel]="email()" (ngModelChange)="email.set($event)"/>
-    <p>senha</p>
- <input
-    type="password"
-    [ngModel]="password()"
-    (ngModelChange)="password.set($event)"
-  />
+
+  <form class="modal-form" [formGroup]="form" (ngSubmit)="updateProfile()">
+    <mat-form-field appearance="outline">
+      <mat-label>Nome</mat-label>
+      <input matInput type="text" formControlName="name" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>E-mail</mat-label>
+      <input matInput type="email" formControlName="email" />
+    </mat-form-field>
+
+    <div class="password-toggle">
+      <div>
+        <strong>Alterar senha</strong>
+        <span>Ative para cadastrar uma nova senha.</span>
+      </div>
+
+      <mat-slide-toggle formControlName="changePassword"></mat-slide-toggle>
+    </div>
+
+    @if (form.value.changePassword) {
+      <mat-form-field appearance="outline">
+        <mat-label>Nova senha</mat-label>
+        <input
+          matInput
+          type="password"
+          formControlName="password"
+          [type]="hidePassword ? 'password' : 'text'"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          type="button"
+          (click)="hidePassword = !hidePassword"
+          [attr.aria-label]="hidePassword ? 'Mostrar senha' : 'Ocultar senha'"
+        >
+          <mat-icon>
+            {{ hidePassword ? 'visibility' : 'visibility_off' }}
+          </mat-icon>
+        </button>
+      </mat-form-field>
+    }
+
     <div class="modal-actions">
       <button mat-button type="button" (click)="close()">Cancelar</button>
 

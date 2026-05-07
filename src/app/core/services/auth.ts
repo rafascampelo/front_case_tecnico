@@ -14,7 +14,7 @@ export class AuthService {
   login(data: { email: string; password: string }) {
     return this.http.post<{ access_token: string; token_type: string }>(
       `${this.api}/auth/login`,
-      data
+      data,
     );
   }
 
@@ -33,5 +33,9 @@ export class AuthService {
       console.error('Erro ao decodificar token:', error);
       return null;
     }
+  }
+
+  logout() {
+    localStorage.removeItem('token');
   }
 }

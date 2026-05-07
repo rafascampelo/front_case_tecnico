@@ -25,6 +25,10 @@ export class ClientService {
     return this.http.put<Client>(`${this.api}/clients/${id}`, data);
   }
 
+  deleteClient(id: number) {
+    return this.http.delete(`${this.api}/clients/${id}`);
+  }
+
   searchClients(term: string) {
     const normalizedTerm = term.trim().toLowerCase();
 

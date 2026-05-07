@@ -1,7 +1,7 @@
-import { Routes } from '@angular/router';
+import { Router, Routes } from '@angular/router';
 import { InitialScreen } from './feature/pages/initial-screen/initial-screen';
 import { MainLayout } from './shared/components/layout/main-layout/main-layout';
-
+import { inject } from '@angular/core';
 
 export const routes: Routes = [
     {

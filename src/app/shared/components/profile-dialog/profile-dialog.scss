@@ -1,55 +1,126 @@
 .profile-modal {
-  padding: 24px;
+  width: 420px;
+  max-width: 100%;
+  padding: 28px;
+  box-sizing: border-box;
 }
 
 .modal-header {
   display: flex;
   align-items: center;
-  gap: 14px;
-  margin-bottom: 24px;
+  gap: 16px;
+  margin-bottom: 28px;
 }
 
 .modal-avatar {
-  width: 48px;
-  height: 48px;
+  width: 58px;
+  height: 58px;
   border-radius: 50%;
-  background: #1f2937;
-  color: #ffffff;
-  display: grid;
-  place-items: center;
-  font-size: 20px;
+  background: var(--mat-sys-primary, #3f51b5);
+  color: var(--mat-sys-on-primary, #fff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
   font-weight: 700;
+  flex-shrink: 0;
 }
 
-.modal-header h2 {
+.modal-title {
+  min-width: 0;
+}
+
+.modal-title h2 {
   margin: 0;
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--mat-sys-on-surface, #1f1f1f);
 }
 
-.modal-header p {
-  margin: 4px 0 0;
-  color: #6b7280;
+.modal-title p {
+  margin: 6px 0 0;
   font-size: 14px;
+  line-height: 1.4;
+  color: var(--mat-sys-on-surface-variant, #666);
 }
 
-.full-field {
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.modal-form mat-form-field {
   width: 100%;
 }
 
 .modal-actions {
   display: flex;
+  align-items: center;
   justify-content: flex-end;
-  gap: 10px;
-  margin-top: 20px;
+  gap: 12px;
+  margin-top: 12px;
+  padding-top: 8px;
 }
+
 .modal-actions button {
-  min-width: 100px;
-  height: 40px;
-  border: none;
-  border-radius: 6px;
-  padding: 0 16px;
+  min-width: 96px;
+}
+
+@media (max-width: 520px) {
+  .profile-modal {
+    width: 100%;
+    padding: 22px;
+  }
+
+  .modal-header {
+    align-items: flex-start;
+    margin-bottom: 24px;
+  }
+
+  .modal-avatar {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+
+  .modal-title h2 {
+    font-size: 20px;
+  }
+
+  .modal-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .modal-actions button {
+    width: 100%;
+  }
+}
+.password-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 16px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  margin: 2px 0 8px;
+}
+
+.password-toggle div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.password-toggle strong {
   font-size: 14px;
   font-weight: 600;
-  cursor: pointer;
+}
+
+.password-toggle span {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.6);
 }

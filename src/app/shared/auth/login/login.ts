@@ -27,8 +27,8 @@ import { MatInputModule } from '@angular/material/input';
 })
 export class Login {
   form!: FormGroup;
-  email = signal('rafateste@email.com');
-  password = signal('12345678');
+  email = signal('user@outlook.com');
+  password = signal('123456');
 
   constructor(
     private fb: FormBuilder,

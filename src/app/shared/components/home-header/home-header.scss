@@ -56,10 +56,12 @@
   position: relative;
   width: 100%;
   max-width: 520px;
+  align-items: center;
 }
 
 .search-field {
-  width: 100%;
+  flex: 1;
+  gap: 4px;
 }
 
 .search-button {
@@ -69,13 +71,21 @@
   font-size: 13px;
   line-height: 1;
 }
+.logout-button {
+  flex: 0 0 auto;
+  margin-bottom: 20px;
+  margin-left: 10px;
+}
 
 .search-results {
   position: absolute;
   top: calc(100% - 14px);
   left: 0;
-  right: 0;
+  right: 139px;
   z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 
   margin: 0;
   padding: 6px;

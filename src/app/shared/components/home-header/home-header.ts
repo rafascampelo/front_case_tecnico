@@ -20,6 +20,7 @@ import { ProfileDialog } from '../profile-dialog/profile-dialog';
     MatInputModule,
     MatButtonModule,
     CommonModule,
+    MatIconModule
   ],
   templateUrl: './home-header.html',
   styleUrl: './home-header.scss',
@@ -72,20 +73,23 @@ export class HomeHeader {
   }
 
   getEmail() {
-    this.auth.getUserId()
-      ? this.clientService.getClient(this.auth.getUserId()).subscribe((client) => this.email.set(client.email))
-      : '';
-
+    const userId = this.auth.getUserId();
+    this.clientService.getClient(userId).subscribe((client) => {
+      console.log('HomeHeader getClient response:', client.email);
+      this.email.set(client.email);
+    });
   }
   openProfileDialog() {
     this.dialog.open(ProfileDialog, {
-      width: '420px',
-      maxWidth: '92vw',
-      panelClass: 'profile-dialog',
       data: {
         name: this.name(),
-        email: this.email()
+        email: this.email(),
       },
     });
+  }
+
+  logOut(){
+    localStorage.removeItem('token');
+    window.location.href = '/login';
   }
 }

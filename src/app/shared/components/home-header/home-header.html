@@ -33,6 +33,16 @@
       </button>
     </mat-form-field>
 
+    <button
+      mat-icon-button
+      type="button"
+      class="logout-button"
+      aria-label="Sair"
+      (click)="logOut()"
+    >
+      <mat-icon>logout</mat-icon>
+    </button>
+
     @if (searchResults.length > 0) {
       <ul class="search-results">
         <li class="search-result-item" *ngFor="let client of searchResults">
