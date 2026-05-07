@@ -21,6 +21,10 @@ export class ClientService {
     return this.http.get<Client[]>(`${this.api}/clients`);
   }
 
+  updateClient(id: number, data: Partial<Client>) {
+    return this.http.put<Client>(`${this.api}/clients/${id}`, data);
+  }
+
   searchClients(term: string) {
     const normalizedTerm = term.trim().toLowerCase();
 

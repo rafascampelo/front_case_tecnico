@@ -1,1 +1,32 @@
-<p>profile-dialog works!</p>
+<div class="profile-modal">
+  <div class="modal-header">
+    <div class="modal-avatar">
+      {{ name().charAt(0).toUpperCase() }}
+    </div>
+
+    <div>
+      <h2>Meu perfil</h2>
+      <p>Atualize seus dados ou remova sua conta.</p>
+    </div>
+  </div>
+  <form class="modal-form" (ngSubmit)="updateProfile()">
+    <input  type="text" [ngModel]="name()" (ngModelChange)="name.set($event)"/>
+    <P>email</P>
+    <input  type="email" [ngModel]="email()" (ngModelChange)="email.set($event)"/>
+    <p>senha</p>
+ <input
+    type="password"
+    [ngModel]="password()"
+    (ngModelChange)="password.set($event)"
+  />
+    <div class="modal-actions">
+      <button mat-button type="button" (click)="close()">Cancelar</button>
+
+      <button mat-stroked-button color="warn" type="button" (click)="deleteProfile()">
+        Deletar perfil
+      </button>
+
+      <button mat-flat-button color="primary" type="submit">Salvar</button>
+    </div>
+  </form>
+</div>
