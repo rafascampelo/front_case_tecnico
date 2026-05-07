@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { BalanceService } from '../../../core/services/balance';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../core/services/auth';
-import { ClientService } from '../../../core/services/client';
 
 @Component({
   selector: 'app-withdraw-dialog',
@@ -19,7 +18,6 @@ export class WithdrawDialog implements OnInit {
     private fb: FormBuilder,
     private balanceService: BalanceService,
     private auth: AuthService,
-    private clientService: ClientService,
   ) {}
 
   ngOnInit() {

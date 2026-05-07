@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Inject, Injectable } from "@angular/core";
+import { Transaction } from "../interfaces/transaction.interface";
 
 @Injectable({ providedIn: 'root' })
 export class BalanceService {
@@ -7,11 +8,11 @@ export class BalanceService {
   constructor(private http: HttpClient) {}
 
     setDeposit(amount: number, id: number) {
-    return this.http.post(`${this.api}/clients/deposit/${id}`, { amount });
+    return this.http.post<{ transaction: Transaction }>(`${this.api}/clients/deposit/${id}`, { amount });
     }
 
     withdraw(amount: number, id: number) {
-    return this.http.post<{ amount : number, id: number }>(`${this.api}/clients/withdraw/${id}`, { amount });
+    return this.http.post<{ transaction: Transaction }>(`${this.api}/clients/withdraw/${id}`, { amount });
     }
 
 }

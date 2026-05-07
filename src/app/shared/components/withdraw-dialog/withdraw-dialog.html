@@ -1,18 +1,13 @@
-<!-- OVERLAY -->
 <div class="modal-overlay">
-  <!-- MODAL -->
   <div class="modal-content">
-    <!-- HEADER -->
     <div class="modal-header">
       <div>
         <h2>Sacar dinheiro</h2>
         <p>Retire saldo da sua conta</p>
       </div>
-    </div>
-
-    <!-- FORM -->
+    
+    <button class="close-button" (click)="closeModal()">✕</button></div>
     <form class="modal-form" [formGroup]="form" (ngSubmit)="withdraw()">
-      <!-- INPUT -->
       <div class="input-group">
         <label>Valor do saque</label>
 
@@ -23,9 +18,10 @@
         </div>
       </div>
 
-      <button type="button" class="secondary-button" (click)="closeModal()">Cancelar</button>
-
-      <button type="submit" class="primary-button">Confirmar saque</button>
+      <div class="modal-actions">
+        <button type="button" class="secondary-button" (click)="closeModal()">Cancelar</button>
+        <button type="submit" class="primary-button">Confirmar saque</button>
+      </div>
     </form>
   </div>
 </div>

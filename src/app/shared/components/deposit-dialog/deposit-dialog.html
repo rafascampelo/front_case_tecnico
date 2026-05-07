@@ -1,8 +1,5 @@
-<!-- OVERLAY -->
 <div class="modal-overlay">
-  <!-- MODAL -->
   <div class="modal-content">
-    <!-- HEADER -->
     <div class="modal-header">
       <div>
         <h2>Depositar dinheiro</h2>
@@ -11,21 +8,16 @@
 
       <button class="close-button" (click)="closeModal()">✕</button>
     </div>
-
-    <!-- FORM -->
-    <form class="modal-form">
-      <!-- INPUT -->
+    <form class="modal-form" [formGroup]="depositForm" (ngSubmit)="deposit()">
       <div class="input-group">
         <label>Valor do depósito</label>
 
         <div class="money-input">
           <span>R$</span>
-
-          <input type="number" placeholder="0,00" />
+          <input type="number" placeholder="0,00" formControlName="amount" />
         </div>
       </div>
 
-      <!-- ACTIONS -->
       <div class="modal-actions">
         <button type="button" class="secondary-button" (click)="closeModal()">Cancelar</button>
 

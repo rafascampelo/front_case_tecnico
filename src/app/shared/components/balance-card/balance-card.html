@@ -2,6 +2,6 @@
   <div class="balance-info">
     <span>Saldo disponível</span>
     <strong>R$ {{ balance() | number: '1.2-2' }}</strong>
-    <small>Atualizado hoje às 09:42</small>
+    <small>Atualizado {{ ultimaAtualizacao() | date: 'dd/MM/yyyy HH:mm' }} </small>
   </div>
 </div>
