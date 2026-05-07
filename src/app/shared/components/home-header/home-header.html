@@ -3,18 +3,46 @@
     <div class="avatar">R</div>
 
     <div>
-      <span class="greeting">Olá, Rafael</span>
+      <span class="greeting">Olá, {{ getName() }}</span>
       <strong>Bem-vindo de volta</strong>
     </div>
   </div>
 
-  <mat-form-field class="search-field" appearance="outline">
-    <mat-label>Pesquisar</mat-label>
-    <input
-      matInput
-      placeholder="Buscar conhecidos para deposito"
-      type="text"
-      placeholder="Pesquisar por nome ou email"
-    />
-  </mat-form-field>
+  <div class="search-wrapper">
+    <mat-form-field class="search-field" appearance="outline">
+      <mat-label>Pesquisar</mat-label>
+
+      <input
+        matInput
+        type="text"
+        placeholder="Pesquisar por nome ou email"
+        [ngModel]="searchTerm()"
+        (keyup.enter)="search()"
+        (ngModelChange)="onSearchTermChange($event)" 
+      />
+
+      <button
+        matSuffix
+        mat-flat-button
+        color="primary"
+        type="button"
+        class="search-button"
+        (click)="search()"
+      >
+        Pesquisar
+      </button>
+    </mat-form-field>
+
+    @if (searchResults.length > 0) {
+      <ul class="search-results">
+        <li class="search-result-item" *ngFor="let client of searchResults">
+          <span class="client-name">{{ client.name }}</span>
+          <span class="client-email">{{ client.email }}</span>
+        </li>
+      </ul>
+    }
+    @else if (hasSearched && searchTerm().trim()) {
+      <ul class="search-results"><li class="no-results">Nenhum resultado encontrado</li></ul>
+     }
+  </div>
 </header>

@@ -13,5 +13,29 @@ export class ClientService {
     return this.http.get<{ balance: number }>(`${this.api}/clients/${id}`);
   }
 
+   getClient(id: number) {
+    return this.http.get<Client>(`${this.api}/clients/${id}`);
+  }
 
+  getClients() {
+    return this.http.get<Client[]>(`${this.api}/clients`);
+  }
+
+  searchClients(term: string) {
+    const normalizedTerm = term.trim().toLowerCase();
+
+    return this.getClients().pipe(
+      map((clients) => {
+        if (!normalizedTerm) {
+          return [];
+        }
+
+        return clients.filter(
+          (client) =>
+            client.name.toLowerCase().includes(normalizedTerm) ||
+            client.email.toLowerCase().includes(normalizedTerm),
+        );
+      }),
+    );
+  }
 }
