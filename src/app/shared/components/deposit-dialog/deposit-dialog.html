@@ -3,7 +3,7 @@
     <div class="modal-header">
       <div>
         <h2>Depositar dinheiro</h2>
-        <p>Deposite na sua conta ou na conta de alguém</p>
+        <p>Deposito em qualquer conta</p>
       </div>
 
       <button class="close-button" type="button" (click)="closeModal()">✕</button>
@@ -11,13 +11,7 @@
 
     <form class="modal-form" [formGroup]="depositForm" (ngSubmit)="deposit()">
       <div class="input-group">
-        <label>Email da conta</label>
-        <input type="email" placeholder="email@exemplo.com" formControlName="email" />
-      </div>
-
-      <div class="input-group">
         <label>Valor do depósito</label>
-
         <div class="money-input">
           <span>R$</span>
           <input type="number" placeholder="0,00" formControlName="amount" />

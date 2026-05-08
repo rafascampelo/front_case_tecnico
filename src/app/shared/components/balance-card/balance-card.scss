@@ -1,9 +1,10 @@
 .balance-card {
-    margin-top: 30px;
+  margin-top: 30px;
   padding: 32px;
   border-radius: 8px;
-  background: linear-gradient(135deg, #003f8f 0%, #0057b8 100%);
-  color: #fff;
+  background: linear-gradient(135deg, #ffffff 0%, #f3f4f6 100%);
+  border: 1px solid #e5e7eb;
+  color: #111827;
   display: flex;
   justify-content: space-between;
   gap: 24px;
@@ -12,7 +13,7 @@
 
 .balance-info span,
 .balance-info small {
-  color: rgba(255, 255, 255, 0.78);
+  color: rgba(0, 0, 0, 0.78);
 }
 
 .balance-info strong {

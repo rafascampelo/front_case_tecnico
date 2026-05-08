@@ -6,8 +6,9 @@
   <app-balance-card></app-balance-card>
 
   <div class="actions">
-    <button class="deposit-button" (click)="openDepositModal()">Depositar</button>
-    <button class="withdraw-button" (click)="openWithdrawModal()">Sacar</button>
+    <button (click)="openDepositModal()">Depositar</button>
+    <button (click)="openWithdrawModal()">Sacar</button>
+    <button (click)="openTransferModal()">Transferir</button>
   </div>
 
   @if (showDepositModal) {
@@ -16,5 +17,9 @@
 
   @if (showWithdrawModal) {
     <app-withdraw-dialog (close)="closeModal()" />
+  }
+
+  @if (showTransferModal) {
+    <app-transfer-dialog (close)="closeModal()" />
   }
 </div>

@@ -29,10 +29,10 @@ import { ClientService } from '../../../core/services/client';
 export class HomeHeader implements OnInit {
   private dialog = inject(MatDialog);
   searchTerm = signal('');
-  searchResults: Client[] = [];
+  searchResults = signal<Client[]>([]);
   name = signal('');
   email = signal('');
-  hasSearched = false;
+  hasSearched = signal(false);
 
   constructor(
     public currentClient: CurrentClientService,
@@ -46,12 +46,11 @@ export class HomeHeader implements OnInit {
 
   onSearchTermChange(value: string) {
     const term = value.trim();
-
     this.searchTerm.set(value);
 
     if (!term) {
-      this.searchResults = [];
-      this.hasSearched = false;
+      this.searchResults.set([]);
+      this.hasSearched.set(false);
     }
   }
 
@@ -59,28 +58,30 @@ export class HomeHeader implements OnInit {
     const term = this.searchTerm().trim();
 
     if (!term) {
-      this.searchResults = [];
-      this.hasSearched = false;
+      this.searchResults.set([]);
+      this.hasSearched.set(false);
       return;
     }
 
-    this.hasSearched = true;
+    this.hasSearched.set(true);
 
     this.clientService.searchClients(term).subscribe({
       next: (clients) => {
-        this.searchResults = clients;
+        this.searchResults.set(clients);
       },
       error: (error) => {
         console.error('Search error:', error);
-        this.searchResults = [];
+        this.searchResults.set([]);
       },
     });
   }
+
   refreshSearch() {
-    if (this.hasSearched && this.searchTerm().trim()) {
+    if (this.hasSearched() && this.searchTerm().trim()) {
       this.search();
     }
   }
+
   loadCurrentClient() {
     const userId = this.auth.getUserId();
 
