@@ -16,6 +16,9 @@
 
           <input type="number" placeholder="0,00" formControlName="amount" />
         </div>
+        @if (form.get('amount')?.touched && form.get('amount')?.hasError('required')) {
+        <small>Informe um valor.</small>
+      }
       </div>
 
       <div class="modal-actions">

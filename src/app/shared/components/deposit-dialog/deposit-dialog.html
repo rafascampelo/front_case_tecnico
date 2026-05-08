@@ -16,6 +16,11 @@
           <span>R$</span>
           <input type="number" placeholder="0,00" formControlName="amount" />
         </div>
+        @if (
+          depositForm.get('amount')?.touched && depositForm.get('amount')?.hasError('required')
+        ) {
+          <small>Informe um valor.</small>
+        }
       </div>
 
       <div class="modal-actions">

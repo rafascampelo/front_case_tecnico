@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../../core/services/auth';
+import { AuthService } from '../../../../core/services/auth';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -42,12 +42,12 @@ export class Login {
   }
 
   login() {
-    console.log('Form value:', this.form.value); 
+    console.log('Form value:', this.form.value);
     this.auth.login(this.form.value).subscribe({
       next: (response) => {
         const token = response.access_token;
         localStorage.setItem('token', token);
-        console.log('Token armazenado:', token); 
+        console.log('Token armazenado:', token);
         this.router.navigate(['/home']);
       },
       error: (err) => {

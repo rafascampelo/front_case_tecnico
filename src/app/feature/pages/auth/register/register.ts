@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../../core/services/auth';
+import { AuthService } from '../../../../core/services/auth';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -45,11 +45,11 @@ export class Register {
     this.auth.register(this.registerForm.value).subscribe({
       next: (response) => {
         console.log('Cadastro bem-sucedido, redirecionando para /login');
-        this.router.navigate(['/login']); 
+        this.router.navigate(['/login']);
       },
       error: (err) => {
         console.error('Erro no cadastro:', err);
-        alert('Erro no cadastro. Tente novamente.'); 
+        alert('Erro no cadastro. Tente novamente.');
       },
     });
   }

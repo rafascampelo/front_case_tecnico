@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BalanceService } from '../../../core/services/balance';
 import { AuthService } from '../../../core/services/auth';
 import { ClientService } from '../../../core/services/client';
@@ -20,9 +20,9 @@ export class TransferDialog {
     private clientService: ClientService,
   ) {
     this.transferForm = this.fb.group({
-      email: '',
-      amount: '',
-    });
+    email: ['', [Validators.required, Validators.email]],
+    amount: ['', [Validators.required]],
+  });
   }
 
   transfer() {
@@ -96,6 +96,7 @@ export class TransferDialog {
 
     this.transferForm.patchValue({ amount: formatted }, { emitEvent: false });
   }
+
   closeModal() {
     this.close.emit();
   }

@@ -16,6 +16,11 @@
           <span>@</span>
           <input type="email" placeholder="email@exemplo.com" formControlName="email" />
         </div>
+        @if (
+          transferForm.get('email')?.touched && transferForm.get('email')?.hasError('required')
+        ) {
+          <small>Informe um email válido.</small>
+        }
         <label>Valor da transferência</label>
 
         <div class="money-input">
@@ -29,6 +34,11 @@
             (input)="formatMoney($event)"
           />
         </div>
+        @if (
+          transferForm.get('amount')?.touched && transferForm.get('amount')?.hasError('required')
+        ) {
+          <small>Informe um valor.</small>
+        }
       </div>
 
       <div class="modal-actions">

@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BalanceService } from '../../../core/services/balance';
 import { AuthService } from '../../../core/services/auth';
 import { ClientService } from '../../../core/services/client';
@@ -20,7 +20,7 @@ export class DepositDialog {
     private auth: AuthService,
   ) {
     this.depositForm = this.fb.group({
-      amount: '',
+      amount: ['', [Validators.required]],
     });
   }
 
@@ -28,6 +28,11 @@ export class DepositDialog {
     const id = this.auth.getUserId();
     const amount = this.depositForm.value.amount;
 
+    if (this.depositForm.invalid) {
+      alert('Preencha um valor para depósito.');
+      return;
+    }
+    
     if (id && amount) {
       this.balanceService.setDeposit(amount, id).subscribe({
         next: (response) => {
