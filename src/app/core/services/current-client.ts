@@ -1,4 +1,3 @@
-// src/app/core/services/current-client.ts
 
 import { Injectable, signal } from '@angular/core';
 import { ClientService } from './client';
@@ -35,7 +34,6 @@ export class CurrentClientService {
         this.loading.set(false);
       },
       error: (error) => {
-        console.error('Erro ao buscar cliente atual:', error);
         this.error.set('Erro ao carregar cliente.');
         this.loading.set(false);
       },

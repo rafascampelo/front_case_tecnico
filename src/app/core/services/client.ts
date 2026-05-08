@@ -9,7 +9,6 @@ export class ClientService {
   constructor(private http: HttpClient) {}
 
   getBalance(id: number) {
-    console.log('ClientService.getBalance request:', `${this.api}/clients/${id}`);
     return this.http.get<{ balance: number }>(`${this.api}/clients/${id}`);
   }
 

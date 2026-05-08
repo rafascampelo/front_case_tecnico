@@ -1,8 +1,8 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { BalanceService } from '../../../core/services/balance';
+import { BalanceService } from '../../../../core/services/balance';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../../core/services/auth';
+import { AuthService } from '../../../../core/services/auth';
 
 @Component({
   selector: 'app-withdraw-dialog',
@@ -36,12 +36,10 @@ export class WithdrawDialog {
     if (id && amount) {
       this.balanceService.withdraw(amount, id).subscribe({
         next: (response) => {
-          console.log('Withdraw response:', response);
           alert('Saque realizado com sucesso!');
           this.closeModal();
         },
         error: (error) => {
-          console.error('Withdraw error:', error);
           alert('Erro ao realizar saque!');
         },
       });

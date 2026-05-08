@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../../../core/services/auth';
+import { AuthService } from '../../../core/services/auth';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -10,7 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 @Component({
-  selector: 'app-register',
+  selector: 'app-login',
   standalone: true,
   imports: [
     ReactiveFormsModule,
@@ -22,34 +22,34 @@ import { MatInputModule } from '@angular/material/input';
     MatIconModule,
     MatInputModule,
   ],
-  templateUrl: './register.html',
-  styleUrl: './register.scss',
+  templateUrl: './login.html',
+  styleUrl: './login.scss',
 })
-export class Register {
-  registerForm!: FormGroup;
+export class Login {
+  form!: FormGroup;
+  email = signal('user@outlook.com');
+  password = signal('123456');
 
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
     private router: Router,
   ) {
-    this.registerForm = this.fb.group({
-      name: '',
-      email: '',
-      password: '',
+    this.form = this.fb.group({
+      email: this.email(),
+      password: this.password(),
     });
   }
 
-  register() {
-    console.log('Form value:', this.registerForm.value);
-    this.auth.register(this.registerForm.value).subscribe({
+  login() {
+    this.auth.login(this.form.value).subscribe({
       next: (response) => {
-        console.log('Cadastro bem-sucedido, redirecionando para /login');
-        this.router.navigate(['/login']);
+        const token = response.access_token;
+        localStorage.setItem('token', token);
+        this.router.navigate(['/home']);
       },
-      error: (err) => {
-        console.error('Erro no cadastro:', err);
-        alert('Erro no cadastro. Tente novamente.');
+      error: () => {
+        alert('Erro no login. Verifique suas credenciais.');
       },
     });
   }

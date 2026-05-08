@@ -3,14 +3,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { Client } from '../../../core/interfaces/client.interface';
+import { Client } from '../../../../core/interfaces/client.interface';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../../core/services/auth';
+import { AuthService } from '../../../../core/services/auth';
 import { MatDialog } from '@angular/material/dialog';
-import { ProfileDialog } from '../profile-dialog/profile-dialog';
-import { CurrentClientService } from '../../../core/services/current-client';
-import { ClientService } from '../../../core/services/client';
+import { ProfileDialog } from '../../../profile/components/profile-dialog/profile-dialog';
+import { CurrentClientService } from '../../../../core/services/current-client';
+import { ClientService } from '../../../../core/services/client';
 
 @Component({
   selector: 'app-home-header',
@@ -70,7 +70,6 @@ export class HomeHeader implements OnInit {
         this.searchResults.set(clients);
       },
       error: (error) => {
-        console.error('Search error:', error);
         this.searchResults.set([]);
       },
     });
@@ -97,7 +96,6 @@ export class HomeHeader implements OnInit {
         this.email.set(client.email);
       },
       error: (error) => {
-        console.error('HomeHeader getClient error:', error);
         this.name.set('');
         this.email.set('');
       },

@@ -1,6 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../../../core/services/auth';
+import { AuthService } from '../../../core/services/auth';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -10,7 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 @Component({
-  selector: 'app-login',
+  selector: 'app-register',
   standalone: true,
   imports: [
     ReactiveFormsModule,
@@ -22,37 +22,31 @@ import { MatInputModule } from '@angular/material/input';
     MatIconModule,
     MatInputModule,
   ],
-  templateUrl: './login.html',
-  styleUrl: './login.scss',
+  templateUrl: './register.html',
+  styleUrl: './register.scss',
 })
-export class Login {
-  form!: FormGroup;
-  email = signal('user@outlook.com');
-  password = signal('123456');
+export class Register {
+  registerForm!: FormGroup;
 
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
     private router: Router,
   ) {
-    this.form = this.fb.group({
-      email: this.email(),
-      password: this.password(),
+    this.registerForm = this.fb.group({
+      name: '',
+      email: '',
+      password: '',
     });
   }
 
-  login() {
-    console.log('Form value:', this.form.value);
-    this.auth.login(this.form.value).subscribe({
+  register() {
+    this.auth.register(this.registerForm.value).subscribe({
       next: (response) => {
-        const token = response.access_token;
-        localStorage.setItem('token', token);
-        console.log('Token armazenado:', token);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/login']);
       },
       error: (err) => {
-        console.error('Erro no login:', err);
-        alert('Erro no login. Verifique suas credenciais.');
+        alert('Erro no cadastro. Tente novamente.');
       },
     });
   }

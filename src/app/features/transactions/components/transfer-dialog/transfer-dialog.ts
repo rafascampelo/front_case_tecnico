@@ -1,8 +1,8 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { BalanceService } from '../../../core/services/balance';
-import { AuthService } from '../../../core/services/auth';
-import { ClientService } from '../../../core/services/client';
+import { BalanceService } from '../../../../core/services/balance';
+import { AuthService } from '../../../../core/services/auth';
+import { ClientService } from '../../../../core/services/client';
 @Component({
   selector: 'app-transfer-dialog',
   imports: [ReactiveFormsModule],
@@ -20,9 +20,9 @@ export class TransferDialog {
     private clientService: ClientService,
   ) {
     this.transferForm = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
-    amount: ['', [Validators.required]],
-  });
+      email: ['', [Validators.required, Validators.email]],
+      amount: ['', [Validators.required]],
+    });
   }
 
   transfer() {
@@ -65,13 +65,11 @@ export class TransferDialog {
             this.closeModal();
           },
           error: (error) => {
-            console.error('Transfer error:', error);
             alert(error.error?.detail || 'Erro ao realizar transferência.');
           },
         });
       },
       error: (error) => {
-        console.error('Client search error:', error);
         alert('Erro ao procurar cliente pelo email.');
       },
     });

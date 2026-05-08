@@ -1,8 +1,8 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { BalanceService } from '../../../core/services/balance';
-import { AuthService } from '../../../core/services/auth';
-import { ClientService } from '../../../core/services/client';
+import { BalanceService } from '../../../../core/services/balance';
+import { AuthService } from '../../../../core/services/auth';
+import { ClientService } from '../../../../core/services/client';
 
 @Component({
   selector: 'app-deposit-dialog',
@@ -32,16 +32,14 @@ export class DepositDialog {
       alert('Preencha um valor para depósito.');
       return;
     }
-    
+
     if (id && amount) {
       this.balanceService.setDeposit(amount, id).subscribe({
         next: (response) => {
-          console.log('Deposit response:', response);
           alert('Depósito realizado com sucesso!');
           this.closeModal();
         },
         error: (error) => {
-          console.error('Deposit error:', error);
           alert('Erro ao realizar depósito!');
         },
       });

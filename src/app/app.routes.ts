@@ -1,6 +1,6 @@
 import { Router, Routes } from '@angular/router';
-import { InitialScreen } from './feature/pages/initial-screen/initial-screen';
-import { MainLayout } from './feature/pages/auth/layout/main-layout/main-layout';
+import { InitialScreen } from './features/home/pages/initial-screen/initial-screen';
+import { MainLayout } from './features/auth/pages/components/layout/main-layout/main-layout';
 import { inject } from '@angular/core';
 
 export const routes: Routes = [
@@ -15,12 +15,11 @@ export const routes: Routes = [
       },
       {
         path: 'login',
-        loadComponent: () => import('./feature/pages/auth/login/login').then((m) => m.Login),
+        loadComponent: () => import('./features/auth/login/login').then((m) => m.Login),
       },
       {
         path: 'register',
-        loadComponent: () =>
-          import('./feature/pages/auth/register/register').then((m) => m.Register),
+        loadComponent: () => import('./features/auth/register/register').then((m) => m.Register),
       },
     ],
   },
