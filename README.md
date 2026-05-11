@@ -1,59 +1,182 @@
-# FrontCaseTecnico
+# 💰 Banking App - Angular Fintech Project
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.9.
+Projeto frontend desenvolvido em **Angular**, simulando uma aplicação
+bancária com funcionalidades como login, cadastro, transferências,
+depósitos, saque e gestão de perfil.
 
-## Development server
+O objetivo é demonstrar domínio de Angular moderno, consumo de APIs,
+autenticação via token e boas práticas de arquitetura frontend.
 
-To start a local development server, run:
+---
+
+## 🚀 Tecnologias utilizadas
+
+- Angular 21
+- TypeScript
+- Scss
+- Angular Material
+- Reactive Forms
+- RxJS
+- HttpClient
+- LocalStorage (auth token)
+
+---
+
+## 📁 Estrutura do projeto
+
+    src/app
+     ├── core
+     │    └── services (auth, client, balance)
+     │
+     ├── features
+     │    ├── auth (login, register)
+     │    ├── transactions (deposit, transfer, withdraw)
+     │    └── profile
+     │
+     │
+     └── app.routes.ts
+
+---
+
+### 📌 Pré-requisitos
+
+Antes de começar, você precisa ter instalado:
+
+- Node.js
+- Angular CLI
+- API backend em Python (obrigatório para funcionamento completo)
+
+> ⚠️ Importante: o projeto frontend depende diretamente da API em Python para funcionar corretamente.
+
+---
+## 🔗 Dependência da API (OBRIGATÓRIO)
+
+Esse projeto consome dados de uma API desenvolvida em Python.
+
+Sem a API rodando:
+
+- As requisições não irão funcionar
+- Dados não serão carregados
+- Algumas funcionalidades ficarão indisponíveis
+
+### [Link da api](https://github.com/rafascampelo/case_tecnico_py)
+
+### 👉 Para rodar o sistema completo:
+
+1. Siga a documentação da API backend
+2. Suba o servidor Python
+3. Confirme que ela está rodando (ex: `http://127.0.0.1:8000`)
+4. Depois inicie o frontend Angular
+
+---
+## ⚙️ Como rodar o Front-end
+
+### Antes de prosseguir, confirme se o Node.js está instalado na sua máquina. Caso contrário, instale-o para continuar a configuração do projeto.
+
+### 1. Instalar dependências
+
+```bash
+npm install
+```
+
+### 2. Rodar aplicação
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+A aplicação estará disponível em:
 
-## Code scaffolding
+    http://localhost:4200
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+---
 
-```bash
-ng generate component component-name
-```
+## 🔐 Autenticação
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+O sistema utiliza autenticação via **JWT Token**.
 
-```bash
-ng generate --help
-```
+Após o login:
 
-## Building
+- o token é armazenado no `localStorage`
+- utilizado em requisições via interceptor HTTP
+- protege rotas autenticadas
 
-To build the project run:
+---
 
-```bash
-ng build
-```
+## 📌 Funcionalidades
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### 🔑 Autenticação
 
-## Running unit tests
+- Login de usuário
+- Registro de conta
+- Logout
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+### 💸 Transações
 
-```bash
-ng test
-```
+- Depósito
+- Transferência entre contas
+- Validação de saldo e valores
 
-## Running end-to-end tests
+### 👤 Perfil
 
-For end-to-end (e2e) testing, run:
+- Atualização de dados
+- Alteração de senha
+- Exclusão de conta
 
-```bash
-ng e2e
-```
+---
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## 🧠 Arquitetura
 
-## Additional Resources
+O projeto segue uma arquitetura baseada em **feature modules + services
+centralizados**:
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- `core/services`: lógica de negócio e integração com API
+- `features`: organização por domínio (auth, transactions, profile)
+- `inject()` + `constructor` híbrido para DI (migração para Angular
+  moderno)
+
+---
+
+## 🔄 Interceptors
+
+O projeto utiliza **HTTP Interceptor** para:
+
+- adicionar token automaticamente em requests
+- proteger rotas autenticadas
+- evitar repetição de código
+
+---
+
+## 🎯 Objetivo do projeto
+
+Este projeto foi desenvolvido com foco em:
+
+- boas práticas Angular
+- consumo de API REST
+- autenticação JWT
+- arquitetura escalável
+- experiência de usuário (UI com Angular Material)
+
+---
+
+## 📌 Melhorias futuras
+
+- [ ] Persistência de sessão mais robusta
+- [ ] Testes unitários
+- [ ] Loading global interceptor
+- [ ] Tratamento global de erros
+- [ ] Deploy
+
+---
+
+## 👩‍💻 Autora
+
+Projeto desenvolvido por Rafaela como parte de evolução em
+desenvolvimento frontend com Angular.
+
+---
+
+## ⚡ Observação
+
+Simulação de sistema bancário com foco em arquitetura frontend moderna e
+integração com backend.
