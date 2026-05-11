@@ -53,6 +53,7 @@ Antes de começar, você precisa ter instalado:
 > ⚠️ Importante: o projeto frontend depende diretamente da API em Python para funcionar corretamente.
 
 ---
+
 ## 🔗 Dependência da API (OBRIGATÓRIO)
 
 Esse projeto consome dados de uma API desenvolvida em Python.
@@ -73,6 +74,7 @@ Sem a API rodando:
 4. Depois inicie o frontend Angular
 
 ---
+
 ## ⚙️ Como rodar o Front-end
 
 ### Antes de prosseguir, confirme se o Node.js está instalado na sua máquina. Caso contrário, instale-o para continuar a configuração do projeto.
@@ -166,12 +168,14 @@ Este projeto foi desenvolvido com foco em:
 
 ## 📌 Melhorias futuras
 
-- [ ] Validação de forms com legenda informativa
-- [ ] Validação ativa no input de senha
-- [ ] Testes unitários
-- [ ] Tratamento global de erros
+- [ ] Implementar validação completa em formulários críticos (login, cadastro, depósito e transações), com feedback claro e orientado ao usuário
+- [ ] Validação em tempo real no input de senha (força e critérios)
+- [ ] Testes unitários nos principais fluxos da aplicação
+- [ ] Implementar extrato de transações
+- [ ] Permitir seleção de perfil na busca e redirecionamento para transferência com e-mail já preenchido
 
 ---
+
 ## 👩‍💻 Autora
 
 Projeto desenvolvido por Rafaela Campelo, baseado em um case técnico proposto.
