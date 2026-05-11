@@ -5,8 +5,9 @@
         <h2>Sacar dinheiro</h2>
         <p>Retire saldo da sua conta</p>
       </div>
-    
-    <button class="close-button" (click)="closeModal()">✕</button></div>
+
+      <button class="close-button" (click)="closeModal()">✕</button>
+    </div>
     <form class="modal-form" [formGroup]="form" (ngSubmit)="withdraw()">
       <div class="input-group">
         <label>Valor do saque</label>
@@ -14,11 +15,11 @@
         <div class="money-input">
           <span>R$</span>
 
-          <input type="number" placeholder="0,00" formControlName="amount" />
+          <input type="decimal" placeholder="0.00" formControlName="amount" />
         </div>
         @if (form.get('amount')?.touched && form.get('amount')?.hasError('required')) {
-        <small>Informe um valor.</small>
-      }
+          <small>Informe um valor.</small>
+        }
       </div>
 
       <div class="modal-actions">

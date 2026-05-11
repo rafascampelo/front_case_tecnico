@@ -14,7 +14,7 @@
         <label>Valor do depósito</label>
         <div class="money-input">
           <span>R$</span>
-          <input type="number" placeholder="0,00" formControlName="amount" />
+          <input type="decimal" placeholder="0.00" formControlName="amount" />
         </div>
         @if (
           depositForm.get('amount')?.touched && depositForm.get('amount')?.hasError('required')
