@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
@@ -9,6 +9,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -26,26 +27,27 @@ import { MatInputModule } from '@angular/material/input';
   styleUrl: './register.scss',
 })
 export class Register {
-  registerForm!: FormGroup;
 
-  constructor(
-    private fb: FormBuilder,
-    private auth: AuthService,
-    private router: Router,
-  ) {
-    this.registerForm = this.fb.group({
-      name: '',
-      email: '',
-      password: '',
-    });
-  }
+  private fb = inject(FormBuilder);
+  private auth = inject(AuthService);
+  private router = inject(Router);
+
+  registerForm = this.fb.nonNullable.group({
+    name: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+  });
 
   register() {
-    this.auth.register(this.registerForm.value).subscribe({
-      next: (response) => {
+    if (this.registerForm.invalid) return;
+
+    const { name, email, password } = this.registerForm.getRawValue();
+
+    this.auth.register({ name, email, password }).subscribe({
+      next: () => {
         this.router.navigate(['/login']);
       },
-      error: (err) => {
+      error: () => {
         alert('Erro no cadastro. Tente novamente.');
       },
     });

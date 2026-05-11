@@ -16,7 +16,7 @@ export class InitialScreen {
   showDepositModal = false;
   showWithdrawModal = false;
   showTransferModal = false;
-  constructor(private currentClient: CurrentClientService) {}
+  constructor(public currentClient: CurrentClientService) {}
 
   ngOnInit() {
     this.currentClient.loadCurrentClient();

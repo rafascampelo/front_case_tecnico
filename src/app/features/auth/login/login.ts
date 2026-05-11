@@ -1,7 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
@@ -26,26 +26,28 @@ import { MatInputModule } from '@angular/material/input';
   styleUrl: './login.scss',
 })
 export class Login {
-  form!: FormGroup;
+  private fb = inject(FormBuilder);
   email = signal('');
   password = signal('');
 
   constructor(
-    private fb: FormBuilder,
     private auth: AuthService,
     private router: Router,
-  ) {
-    this.form = this.fb.group({
-      email: this.email(),
-      password: this.password(),
-    });
-  }
+  ) {}
+
+  form = this.fb.nonNullable.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required]],
+  });
 
   login() {
-    this.auth.login(this.form.value).subscribe({
+    if (this.form.invalid) return;
+
+    const { email, password } = this.form.getRawValue();
+
+    this.auth.login({ email, password }).subscribe({
       next: (response) => {
-        const token = response.access_token;
-        localStorage.setItem('token', token);
+        localStorage.setItem('token', response.access_token);
         this.router.navigate(['/home']);
       },
       error: () => {

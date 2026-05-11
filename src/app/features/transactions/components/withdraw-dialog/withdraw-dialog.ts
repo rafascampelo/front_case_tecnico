@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BalanceService } from '../../../../core/services/balance';
 import { CommonModule } from '@angular/common';
@@ -12,17 +12,16 @@ import { AuthService } from '../../../../core/services/auth';
 })
 export class WithdrawDialog {
   @Output() close = new EventEmitter<void>();
-  form!: FormGroup;
+  private fb = inject(FormBuilder);
 
   constructor(
-    private fb: FormBuilder,
     private balanceService: BalanceService,
     private auth: AuthService,
-  ) {
-    this.form = this.fb.group({
-      amount: ['', [Validators.required, Validators.min(1.0)]],
-    });
-  }
+  ) {}
+
+  form = this.fb.group({
+    amount: [0, [Validators.required, Validators.min(1.0)]],
+  });
 
   withdraw() {
     const id = this.auth.getUserId();

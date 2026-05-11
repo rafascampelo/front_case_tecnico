@@ -8,7 +8,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   if (!isPlatformBrowser(platformId)) {
     return next(req);
   }
-  
+
   const token = localStorage.getItem('token');
 
   if (!token) {

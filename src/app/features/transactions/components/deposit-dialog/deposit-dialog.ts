@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BalanceService } from '../../../../core/services/balance';
 import { AuthService } from '../../../../core/services/auth';
@@ -12,17 +12,16 @@ import { ClientService } from '../../../../core/services/client';
 })
 export class DepositDialog {
   @Output() close = new EventEmitter<void>();
-  depositForm!: FormGroup;
+  private fb = inject(FormBuilder);
 
   constructor(
-    private fb: FormBuilder,
     private balanceService: BalanceService,
     private auth: AuthService,
-  ) {
-    this.depositForm = this.fb.group({
-      amount: ['', [Validators.required]],
-    });
-  }
+  ) {}
+
+  depositForm = this.fb.group({
+    amount: [ 0, [Validators.required, Validators.min(1)]],
+  });
 
   deposit() {
     const id = this.auth.getUserId();

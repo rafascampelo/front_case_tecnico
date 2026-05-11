@@ -28,6 +28,7 @@ import { ClientService } from '../../../../core/services/client';
 })
 export class HomeHeader implements OnInit {
   private dialog = inject(MatDialog);
+  
   searchTerm = signal('');
   searchResults = signal<Client[]>([]);
   name = signal('');

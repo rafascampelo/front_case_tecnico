@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BalanceService } from '../../../../core/services/balance';
 import { AuthService } from '../../../../core/services/auth';
@@ -11,19 +11,18 @@ import { ClientService } from '../../../../core/services/client';
 })
 export class TransferDialog {
   @Output() close = new EventEmitter<void>();
-  transferForm!: FormGroup;
+  private fb = inject(FormBuilder);
 
   constructor(
-    private fb: FormBuilder,
     private balanceService: BalanceService,
     private auth: AuthService,
     private clientService: ClientService,
-  ) {
-    this.transferForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      amount: ['', [Validators.required]],
-    });
-  }
+  ) {}
+
+  transferForm = this.fb.nonNullable.group({
+    email: ['', [Validators.required, Validators.email]],
+    amount: [0, [Validators.required, Validators.min(1)]],
+  });
 
   transfer() {
     if (this.transferForm.invalid) {
@@ -31,12 +30,7 @@ export class TransferDialog {
       return;
     }
 
-    const email = this.transferForm.value.email;
-    const amount = Number(
-      String(this.transferForm.value.amount ?? '')
-        .replace(/\./g, '')
-        .replace(',', '.'),
-    );
+    const { email, amount } = this.transferForm.getRawValue();
 
     if (!amount || amount <= 0) {
       alert('Informe um valor válido para transferência.');
@@ -73,26 +67,6 @@ export class TransferDialog {
         alert('Erro ao procurar cliente pelo email.');
       },
     });
-  }
-
-  formatMoney(event: Event) {
-    const input = event.target as HTMLInputElement;
-
-    let value = input.value.replace(/\D/g, '');
-
-    if (!value) {
-      this.transferForm.patchValue({ amount: '' }, { emitEvent: false });
-      return;
-    }
-
-    const numberValue = Number(value) / 100;
-
-    const formatted = numberValue.toLocaleString('pt-BR', {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    });
-
-    this.transferForm.patchValue({ amount: formatted }, { emitEvent: false });
   }
 
   closeModal() {

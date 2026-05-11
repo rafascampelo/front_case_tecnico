@@ -8,11 +8,10 @@ import { isPlatformBrowser } from '@angular/common';
   providedIn: 'root',
 })
 export class AuthService {
+  private http = inject(HttpClient);
   private platformId = inject(PLATFORM_ID);
 
   private api = 'http://127.0.0.1:8000';
-
-  constructor(private http: HttpClient) {}
 
   login(data: { email: string; password: string }) {
     return this.http.post<{ access_token: string; token_type: string }>(

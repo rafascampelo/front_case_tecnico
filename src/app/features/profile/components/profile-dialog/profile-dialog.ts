@@ -30,7 +30,8 @@ export class ProfileDialog {
   private dialogRef = inject(MatDialogRef<ProfileDialog>);
   data = inject(MAT_DIALOG_DATA);
   private router = inject(Router);
-
+  private fb = inject(FormBuilder);
+  
   form!: FormGroup;
   password = signal('');
   hidePassword = true;
@@ -38,7 +39,6 @@ export class ProfileDialog {
   constructor(
     private auth: AuthService,
     private clientService: ClientService,
-    private fb: FormBuilder,
   ) {
     this.form = this.fb.group({
       name: this.data?.name || '',

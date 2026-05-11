@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
+import { inject, Inject, Injectable } from '@angular/core';
 import { Transaction } from '../interfaces/transaction.interface';
 
 @Injectable({ providedIn: 'root' })
 export class BalanceService {
+  private http = inject(HttpClient);
+  
   private api = 'http://127.0.0.1:8000';
-  constructor(private http: HttpClient) {}
 
   setDeposit(amount: number, id: number) {
     return this.http.post<{ transaction: Transaction }>(`${this.api}/clients/deposit/${id}`, {
