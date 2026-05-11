@@ -26,11 +26,15 @@ autenticação via token e boas práticas de arquitetura frontend.
 
     src/app
      ├── core
+     │    └── guards
+     │    ├── interceptors
+     │    ├── interfaces
      │    └── services (auth, client, balance)
      │
      ├── features
-     │    ├── auth (login, register)
-     │    ├── transactions (deposit, transfer, withdraw)
+     │    ├── auth (login, register, pages)
+     │    ├── home (pages, components)
+     │    ├── transactions (components/deposit, components/transfer, components/withdraw)
      │    └── profile
      │
      │
@@ -114,6 +118,7 @@ Após o login:
 ### 💸 Transações
 
 - Depósito
+- Saque
 - Transferência entre contas
 - Validação de saldo e valores
 
@@ -161,22 +166,14 @@ Este projeto foi desenvolvido com foco em:
 
 ## 📌 Melhorias futuras
 
-- [ ] Persistência de sessão mais robusta
+- [ ] Validação de forms com legenda informativa
+- [ ] Validação ativa no input de senha
 - [ ] Testes unitários
-- [ ] Loading global interceptor
 - [ ] Tratamento global de erros
-- [ ] Deploy
 
 ---
-
 ## 👩‍💻 Autora
 
-Projeto desenvolvido por Rafaela como parte de evolução em
-desenvolvimento frontend com Angular.
+Projeto desenvolvido por Rafaela Campelo, baseado em um case técnico proposto.
 
 ---
-
-## ⚡ Observação
-
-Simulação de sistema bancário com foco em arquitetura frontend moderna e
-integração com backend.

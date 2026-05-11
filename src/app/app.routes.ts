@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { InitialScreen } from './features/home/pages/initial-screen/initial-screen';
 import { MainLayout } from './features/auth/pages/components/layout/main-layout/main-layout';
 import { authGuard } from './core/guards/auth';
-import { publicGuard } from './core/guards/public.guard';
+import { publicGuard } from './core/guards/public';
 
 export const routes: Routes = [
   {
